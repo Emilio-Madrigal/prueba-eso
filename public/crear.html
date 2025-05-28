@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Crear cuenta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Nuevo Usuario</title>
     <script>
         function enviarFormulario(accion) {
             document.getElementById('accion').value = accion;
@@ -11,19 +12,20 @@
     </script>
 </head>
 <body>
-    <h1>Crear cuenta</h1>
-    <form id="formulario" action="/crear.php" method="POST">
-        <input type="hidden" id="accion" name="accion" value="crear">
+    <h1>crear nueva cuenta</h1>
+    <form id="formulario" action="/crear" method="POST">
 
-        <label for="nombre">Nombre de usuario:</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <input type="hidden" id="accion" name="accion" value="registrar">
+
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username" name="username" required>
         <br>
-
         <label for="password">Contraseña:</label>
         <input type="password" id="password" name="password" required>
         <br>
-
-        <button type="button" onclick="enviarFormulario('crear')">Crear cuenta</button>
+        <button type="button" onclick="enviarFormulario('registrar')">Registrar</button>
     </form>
+
+    <a href="index.html">crear cuenta</a>
 </body>
 </html>

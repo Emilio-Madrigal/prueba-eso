@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./bd');
@@ -19,6 +18,26 @@ app.post('/index', (req, res) => {
             res.send('Inicio de sesión exitoso');
         } else {
             res.send('Credenciales incorrectas');
+        }
+    });
+});
+
+app.post('/crear', (req, res) => {
+    const { username, password } = req.body;
+
+    const checkUserSql = 'SELECT * FROM users WHERE username = ?';
+    db.query(checkUserSql, [username], (err, resultados) => {
+        if (err) throw err;
+
+        if (resultados.length > 0) {
+            res.send('El nombre de usuario ya está en uso. Intenta con otro.');
+        } else {
+            const insertUserSql = 'INSERT INTO users (username, password) VALUES (?, ?)';
+            db.query(insertUserSql, [username, password], (err, result) => {
+                if (err) throw err;
+
+                res.send('Usuario registrado correctamente');
+            });
         }
     });
 });
